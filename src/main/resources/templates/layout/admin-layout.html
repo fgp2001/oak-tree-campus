@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layout(content)">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Administrador</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="layout-body">
+
+<div class="layout-container">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img th:src="@{/images/logo-icon.png}" class="sidebar-logo-img">
+            <span>Panel Admin</span>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a th:href="@{/admin/dashboard}">📊 Dashboard</a>
+
+            <strong style="margin-top: 1rem;">Cursos</strong>
+            <a href="#">➕ Crear Curso</a>
+            <a href="#">⚙ Gestionar Cursos</a>
+            <a href="#">❌ Eliminar Curso</a>
+
+            <strong style="margin-top: 1rem;">Alumnos</strong>
+            <a href="#">📋 Listar Alumnos</a>
+            <a href="#">➕ Crear Alumno</a>
+
+            <strong style="margin-top: 1rem;">Profesores</strong>
+            <a href="#">➕ Crear Profesor</a>
+
+            <strong style="margin-top: 1rem;">Revocaciones</strong>
+            <a href="#">🚫 Eliminar Acceso Profesor</a>
+            <a href="#">🚫 Eliminar Acceso Alumno</a>
+        </nav>
+    </aside>
+
+    <div class="main-area">
+
+        <header class="topbar">
+            Administrador |
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </header>
+
+        <main class="content">
+            <div th:replace="${content}"></div>
+        </main>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

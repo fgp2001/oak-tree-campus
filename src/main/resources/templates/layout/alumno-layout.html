@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layout(content)">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Campus Alumno</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="layout-body">
+
+<div class="layout-container">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img th:src="@{/images/logo-icon.png}" class="sidebar-logo-img">
+      <span>Campus</span>
+    </div>
+
+    <nav class="sidebar-menu">
+      <a th:href="@{/alumno/dashboard}">Dashboard</a>
+      <a href="#">Mis Cursos</a>
+      <a href="#">Agenda</a>
+      <a href="#">Perfil</a>
+    </nav>
+  </aside>
+
+  <div class="main-area">
+
+    <header class="topbar">
+      Bienvenido Alumno |
+      <a th:href="@{/logout}">Cerrar sesión</a>
+    </header>
+
+    <main class="content">
+      <div th:replace="${content}"></div>
+    </main>
+
+  </div>
+
+</div>
+
+</body>
+</html>

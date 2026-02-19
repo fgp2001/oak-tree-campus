@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layout(content)">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Campus Profesor</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="layout-body">
+
+<div class="layout-container">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img th:src="@{/images/logo-icon.png}" class="sidebar-logo-img">
+            <span>Panel Profesor</span>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a th:href="@{/profesor/dashboard}">🏠 Dashboard</a>
+            <a href="#">📚 Mi Curso</a>
+            <a href="#">👤 Mi Perfil</a>
+        </nav>
+    </aside>
+
+    <div class="main-area">
+
+        <header class="topbar">
+            Bienvenido Profesor |
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </header>
+
+        <main class="content">
+            <div th:replace="${content}"></div>
+        </main>
+
+    </div>
+
+</div>
+
+</body>
+</html>
