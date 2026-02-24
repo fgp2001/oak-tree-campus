@@ -1,0 +1,28 @@
+<section>
+    <h1 th:text="${curso.id == null} ? 'Crear Curso' : 'Editar Curso'"></h1>
+    <form th:action="@{/admin/cursos/guardar}" th:object="${curso}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <label>Título</label>
+        <input type="text" th:field="*{nombre}" required>
+        <br><br>
+        <label>Descripción</label>
+        <textarea th:field="*{descripcion}"></textarea>
+        <br><br>
+        <h3>Profesores</h3>
+        <div th:each="profesor : ${profesores}">
+            <input type="checkbox"
+                   name="profesoresIds"
+                   th:value="${profesor.id}">
+            <span th:text="${profesor.nombre}"></span>
+        </div>
+        <h3>Alumnos</h3>
+        <div th:each="alumno : ${alumnos}">
+            <input type="checkbox"
+                   name="alumnosIds"
+                   th:value="${alumno.id}">
+            <span th:text="${alumno.nombre}"></span>
+        </div>
+        <br><br>
+        <button type="submit">Guardar</button>
+    </form>
+</section>

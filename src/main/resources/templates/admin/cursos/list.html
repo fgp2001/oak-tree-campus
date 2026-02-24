@@ -1,0 +1,19 @@
+<section>
+    <h1>Gestión de Cursos</h1>
+    <a th:href="@{/admin/cursos/nuevo}">Crear Curso</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Acciones</th>
+        </tr>
+        <tr th:each="curso : ${cursos}">
+            <td th:text="${curso.id}"></td>
+            <td th:text="${curso.nombre}"></td>
+            <td>
+                <a th:href="@{/admin/cursos/editar/{id}(id=${curso.id})}">Editar</a>
+                <a th:href="@{/admin/cursos/eliminar/{id}(id=${curso.id})}">Eliminar</a>
+            </td>
+        </tr>
+    </table>
+</section>

@@ -22,16 +22,14 @@
             <a th:href="@{/admin/dashboard}">📊 Dashboard</a>
 
             <strong style="margin-top: 1rem;">Cursos</strong>
-            <a href="#">➕ Crear Curso</a>
-            <a href="#">⚙ Gestionar Cursos</a>
-            <a href="#">❌ Eliminar Curso</a>
+            <a th:href="@{/admin/cursos}">📋 Listar Cursos</a>
+            <a th:href="@{/admin/cursos/nuevo}">➕ Crear Curso</a>
 
             <strong style="margin-top: 1rem;">Alumnos</strong>
-            <a href="#">📋 Listar Alumnos</a>
-            <a href="#">➕ Crear Alumno</a>
+            <a th:href="@{/admin/alumnos/nuevo}">➕ Crear Alumno</a>
 
             <strong style="margin-top: 1rem;">Profesores</strong>
-            <a href="#">➕ Crear Profesor</a>
+            <a th:href="@{/admin/profesores/nuevo}">➕ Crear Profesor</a>
 
             <strong style="margin-top: 1rem;">Revocaciones</strong>
             <a href="#">🚫 Eliminar Acceso Profesor</a>

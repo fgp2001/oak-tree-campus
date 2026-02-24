@@ -1,0 +1,12 @@
+<section>
+    <h1>Crear Alumno</h1>
+    <form th:action="@{/admin/alumnos/guardar}" th:object="${alumno}" method="post">
+        <label>Nombre</label>
+        <input type="text" th:field="*{nombre}" required>
+        <br><br>
+        <label>Email</label>
+        <input type="email" th:field="*{email}" required>
+        <br><br>
+        <button type="submit">Crear</button>
+    </form>
+</section>
