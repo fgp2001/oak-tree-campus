@@ -38,18 +38,19 @@
     </aside>
 
     <div class="main-area">
-
         <header class="topbar">
             Administrador |
             <a th:href="@{/logout}">Cerrar sesión</a>
         </header>
-
         <main class="content">
+            <div style="margin-bottom: 1rem;">
+                <a th:href="@{/admin/dashboard}" class="btn-back">
+                    ← Volver al Dashboard
+                </a>
+            </div>
             <div th:replace="${content}"></div>
         </main>
-
     </div>
-
 </div>
 
 </body>

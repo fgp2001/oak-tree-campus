@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/admin-layout :: layout(~{::section})">
+
 <section>
     <h1 th:text="${curso.id == null} ? 'Crear Curso' : 'Editar Curso'"></h1>
     <form th:action="@{/admin/cursos/guardar}" th:object="${curso}" method="post">
@@ -26,3 +30,4 @@
         <button type="submit">Guardar</button>
     </form>
 </section>
+</html>

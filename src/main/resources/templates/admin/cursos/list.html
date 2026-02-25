@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/admin-layout :: layout(~{::section})">
+
 <section>
     <h1>Gestión de Cursos</h1>
     <a th:href="@{/admin/cursos/nuevo}">Crear Curso</a>
@@ -13,7 +17,52 @@
             <td>
                 <a th:href="@{/admin/cursos/editar/{id}(id=${curso.id})}">Editar</a>
                 <a th:href="@{/admin/cursos/eliminar/{id}(id=${curso.id})}">Eliminar</a>
+                <button type="button"
+                        th:attr="data-id=${curso.id}"
+                        onclick="abrirModal(this)">
+                    👁 Ver alumnos
+                </button>
             </td>
         </tr>
     </table>
+
+    <div id="modalAlumnos" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2>Alumnos del Curso</h2>
+            <ol id="listaAlumnos"></ol>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal(button) {
+
+            const cursoId = button.getAttribute("data-id");
+
+            fetch(`/admin/cursos/${cursoId}/alumnos`)
+                .then(response => response.json())
+                .then(data => {
+
+                    const lista = document.getElementById("listaAlumnos");
+                    lista.innerHTML = "";
+
+                    if (data.length > 0) {
+                        data.forEach(alumno => {
+                            const li = document.createElement("li");
+                            li.textContent = alumno.nombre + " - " + alumno.email;
+                            lista.appendChild(li);
+                        });
+                    } else {
+                        lista.innerHTML = "<li>No hay alumnos inscriptos</li>";
+                    }
+
+                    document.getElementById("modalAlumnos").style.display = "block";
+                });
+        }
+
+        function cerrarModal() {
+            document.getElementById("modalAlumnos").style.display = "none";
+        }
+    </script>
 </section>
+</html>

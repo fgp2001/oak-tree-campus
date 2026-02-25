@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Activar Cuenta</title>
+</head>
+<body>
+<h2>Activar cuenta</h2>
+<form th:action="@{/activar}" method="post">
+    <input type="hidden" name="token" th:value="${token}" />
+    <div>
+        <label>Nueva contraseña:</label>
+        <input type="password" name="password" required />
+    </div>
+    <button type="submit">Activar cuenta</button>
+</form>
+</body>
+</html>

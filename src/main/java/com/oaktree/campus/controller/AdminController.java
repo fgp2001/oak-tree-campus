@@ -1,6 +1,7 @@
 package com.oaktree.campus.controller;
 
 import com.oaktree.campus.model.*;
+import com.oaktree.campus.model.enums.TipoUsuario;
 import com.oaktree.campus.repository.*;
 import com.oaktree.campus.service.EmailService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -112,6 +115,9 @@ public class AdminController {
     @PostMapping("/alumnos/guardar")
     public String guardarAlumno(@ModelAttribute Alumno alumno) {
         alumno.setActivo(false);
+        alumno.setPassword(null);
+        alumno.setTipoUsuario(TipoUsuario.ALUMNO);
+        alumno.setFechaCreacion(LocalDate.now());
         alumnoRepository.save(alumno);
 
         String token = UUID.randomUUID().toString();
@@ -136,7 +142,10 @@ public class AdminController {
     @PostMapping("/profesores/guardar")
     public String guardarProfesor(@ModelAttribute Profesor profesor) {
 
+        profesor.setPassword(null);
         profesor.setActivo(false);
+        profesor.setTipoUsuario(TipoUsuario.PROFESOR);
+        profesor.setFechaCreacion(LocalDate.now());
         profesorRepository.save(profesor);
 
         String token = UUID.randomUUID().toString();
@@ -154,6 +163,19 @@ public class AdminController {
         );
 
         return "redirect:/admin/cursos";
+    }
+
+    @GetMapping("/cursos/{id}/alumnos")
+    @ResponseBody
+    public List<Map<String, String>> obtenerAlumnos(@PathVariable Long id) {
+        Curso curso = cursoRepository.findById(id).orElseThrow();
+
+        return curso.getAlumnos().stream().map(ac -> Map.of(
+                "nombre", ac.getAlumno().getNombre(),
+                "email", ac.getAlumno().getEmail()
+        )).sorted(Comparator.comparing(a-> a.get("nombre")))
+                .toList();
+
     }
 
 
